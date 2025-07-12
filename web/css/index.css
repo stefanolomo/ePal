@@ -2,16 +2,27 @@ main section {
     margin: 1rem;
 }
 
+section.MainBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 main section.MainBox .QuestionBox {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 
     input {
         margin: 0.2rem;
         border-width: 0 0 2px 0;
         outline: none;
-    };
+    }
+}
+
+#keyword, #sentence {
+    font-weight: bold;
 }
 
 main section.MainBox .tags {
@@ -31,10 +42,20 @@ main section.MainBox .tags {
 
 main section.ControlSection {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: center;
 
     button {
         margin: 1rem;
+        padding: 1rem;
     }
+}
+
+input.correct {
+    border: 2px solid green;
+}
+
+input.incorrect {
+    border: 2px solid red;
 }
