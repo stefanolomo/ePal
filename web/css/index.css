@@ -1,0 +1,40 @@
+main section {
+    margin: 1rem;
+}
+
+main section.MainBox .QuestionBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+        margin: 0.2rem;
+        border-width: 0 0 2px 0;
+        outline: none;
+    };
+}
+
+main section.MainBox .tags {
+    display: flex;
+    margin: 0.2rem;
+    align-items: center;
+
+    p {
+        font-size: small;
+        font-weight: 300;
+        margin: 0.8rem;
+        padding: 0.2rem 0.3rem;
+        border-radius: 0.3rem;
+        border: black 1px solid;
+    }
+}
+
+main section.ControlSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        margin: 1rem;
+    }
+}
