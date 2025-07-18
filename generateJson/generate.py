@@ -6,7 +6,6 @@ from datetime import datetime
 
 TASKS_FILE = 'tasks.json'
 DETAILS_LOG = 'details.log'
-SPECIAL_COMMAND = "xx"
 
 def load_existing_tasks():
     if os.path.exists(TASKS_FILE):
@@ -18,7 +17,7 @@ def save_tasks(tasks):
     with open(TASKS_FILE, 'w', encoding='utf-8') as f:
         json.dump(tasks, f, indent=2, ensure_ascii=False)
 
-def input_with_quit(prompt, left_text=None, allow_paste=False, record_time=False, timings=None):
+def input_with_quit(prompt, record_time=False, timings=None):
     value = ''
     if not record_time:
         value = input(prompt)
@@ -32,8 +31,6 @@ def input_with_quit(prompt, left_text=None, allow_paste=False, record_time=False
 
     if value.strip() == '?':
         return None
-    if allow_paste and left_text:
-        value = value.replace(SPECIAL_COMMAND, left_text)
     return value.strip()
 
 def hash_original_text(text):
@@ -60,11 +57,9 @@ def append_to_details_log(entries, avg_time):
 
 def main():
     all_tasks = load_existing_tasks()
-    existing_ids = {task['id'] for task in all_tasks}
 
     print("=== Task Entry Tool for CAE Part 4 ===")
-    print("Enter '?' at any point to stop.")
-    print(f"Type '{SPECIAL_COMMAND}' inside any field to insert the current LEFT part.\n")
+    print("Enter '?' at any point to stop.\n")
 
     answer_count = get_answer_count()
     print(f"🛠️  Using {answer_count} answer(s) per task.\n")
@@ -84,14 +79,11 @@ def main():
             break
 
         task_id = hash_original_text(original)
-        if task_id in existing_ids:
-            print("⚠️ This task already exists (duplicate original sentence). Skipping.\n")
-            continue
 
         answers = []
         for i in range(answer_count):
             label = "> Answer\n> " if answer_count == 1 else f"> Answer {i + 1}\n> "
-            answer = input_with_quit(label, left_text=left, allow_paste=True, record_time=True, timings=timings)
+            answer = input_with_quit(label, record_time=True, timings=timings)
             if answer:
                 answers.append(answer)
 
@@ -99,7 +91,7 @@ def main():
             print("⚠️ No valid answers provided. Skipping task.")
             continue
 
-        right = input_with_quit("> Right part of the task\n> ", left_text=left, allow_paste=True, record_time=True, timings=timings)
+        right = input_with_quit("> Right part of the task\n> ", record_time=True, timings=timings)
 
         task = {
             "id": task_id,
@@ -113,7 +105,6 @@ def main():
         }
 
         all_tasks.append(task)
-        existing_ids.add(task_id)
         entry_count += 1
         print("✅ Task added.\n")
 
