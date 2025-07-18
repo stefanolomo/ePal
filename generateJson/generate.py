@@ -3,9 +3,21 @@ import json
 import hashlib
 import time
 from datetime import datetime
+import re
 
 TASKS_FILE = 'tasks.json'
 DETAILS_LOG = 'details.log'
+
+def normalize_first_cap(s):
+    """Lowercase all, then capitalize first character. Collapse multiple spaces, keep special chars."""
+    s = re.sub(r'\s+', ' ', s.strip())
+    s = s.lower()
+    return s[:1].upper() + s[1:] if s else s
+
+def normalize_middle(s):
+    """Lowercase all, collapse multiple spaces, keep special chars. (No capitalize)"""
+    s = re.sub(r'\s+', ' ', s.strip())
+    return s.lower()
 
 def load_existing_tasks():
     if os.path.exists(TASKS_FILE):
@@ -72,34 +84,37 @@ def main():
         original = input_with_quit("> Original sentence (? to end)\n> ", record_time=True, timings=timings)
         if original is None:
             break
+        original_norm = normalize_first_cap(original)
 
         keyword = input_with_quit("> Keyword (word in capital letters)\n> ", record_time=True, timings=timings)
         left = input_with_quit("> Left part of the task\n> ", record_time=True, timings=timings)
         if left is None:
             break
+        left_norm = normalize_first_cap(left)
 
-        task_id = hash_original_text(original)
+        task_id = hash_original_text(original_norm)
 
         answers = []
         for i in range(answer_count):
             label = "> Answer\n> " if answer_count == 1 else f"> Answer {i + 1}\n> "
             answer = input_with_quit(label, record_time=True, timings=timings)
             if answer:
-                answers.append(answer)
+                answers.append(normalize_middle(answer))
 
         if not answers:
             print("⚠️ No valid answers provided. Skipping task.")
             continue
 
         right = input_with_quit("> Right part of the task\n> ", record_time=True, timings=timings)
+        right_norm = normalize_middle(right)
 
         task = {
             "id": task_id,
-            "original": original,
-            "keyword": keyword.upper(),
+            "original": original_norm,
+            "keyword": keyword.upper() if keyword else "",
             "prompt": {
-                "left": left,
-                "right": right
+                "left": left_norm,
+                "right": right_norm
             },
             "answers": answers
         }
