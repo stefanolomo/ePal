@@ -256,3 +256,25 @@ input.incorrect {
 }
 
 /* ...rest of your CSS below... */
+
+/* ...todo lo anterior... */
+
+/* Footer styles */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 1.1rem 0 0.8rem 0;
+    background: #f4f7fb;
+    color: #3e5ca2;
+    font-size: 0.97rem;
+    margin-top: 2rem;
+    border-top: 1px solid #e0e7ff;
+}
+footer a {
+    color: #25316d;
+    text-decoration: underline;
+    transition: color 0.18s;
+}
+footer a:hover {
+    color: #36b37e;
+}
