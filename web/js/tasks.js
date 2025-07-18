@@ -10,6 +10,14 @@ const sentenceElem = document.getElementById("sentence");
 const tagsContainer = document.querySelector(".tags");
 const inputElem = document.querySelector("input");
 const buttons = document.querySelectorAll(".ControlSection button");
+const answerBox = document.getElementById("answerBox");
+const answerText = document.getElementById("answerText");
+
+function resetFeedback() {
+  inputElem.classList.remove("correct", "incorrect");
+  inputElem.style.background = "";
+  inputElem.style.color = "";
+}
 
 async function loadTasks() {
   const res = await fetch("./questions/tasks.json");
@@ -25,7 +33,7 @@ function renderTask(index) {
   keywordElem.textContent = task.keyword;
   sentenceElem.textContent = task.original;
   inputElem.value = "";
-  inputElem.classList.remove("correct", "incorrect");
+  resetFeedback();
 
   // Update tags
   const tagElements = Array.from(tagsContainer.querySelectorAll("p"));
@@ -38,6 +46,10 @@ function renderTask(index) {
     p.textContent = tag;
     tagsContainer.appendChild(p);
   });
+
+  // Hide answer box on new question
+  answerBox.style.display = "none";
+  answerText.textContent = "";
 }
 
 function checkAnswer() {
@@ -45,11 +57,22 @@ function checkAnswer() {
   const userAnswer = inputElem.value.trim().toLowerCase();
   const correct = task.answers.some(ans => userAnswer === ans.trim().toLowerCase());
   inputElem.classList.remove("correct", "incorrect");
-  inputElem.classList.add(correct ? "correct" : "incorrect");
+
   if (correct) {
+    inputElem.classList.add("correct");
+    inputElem.style.background = "#24e956";
+    inputElem.style.color = "#fff";
     setTimeout(() => {
+      resetFeedback();
       nextTask();
-    }, 800);
+    }, 400);
+  } else {
+    inputElem.classList.add("incorrect");
+    inputElem.style.background = "#ff3357";
+    inputElem.style.color = "#fff";
+    setTimeout(() => {
+      resetFeedback();
+    }, 400);
   }
 }
 
@@ -63,9 +86,16 @@ function randomTask() {
   renderTask(randIndex);
 }
 
+function showAnswer() {
+  const task = tasks[currentIndex];
+  // Show the first answer (or all answers joined by "; ")
+  answerText.textContent = Array.isArray(task.answers) ? task.answers.join(" ; ") : task.answers;
+  answerBox.style.display = "block";
+}
+
 // Attach listeners
 buttons[0].addEventListener("click", checkAnswer);      // Evaluate
-buttons[1].addEventListener("click", randomTask);        // Random
-buttons[2].addEventListener("click", nextTask);          // Next
+buttons[1].addEventListener("click", showAnswer);       // Show Answer
+buttons[2].addEventListener("click", nextTask);         // Next
 
 window.addEventListener("DOMContentLoaded", loadTasks);
