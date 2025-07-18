@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPal</title>
     <link rel="stylesheet" href="./css/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,19 +20,31 @@
             <p id="keyword"></p>
             <div class="QuestionBox">
                 <p id="left"></p>
-                <input type="text">
+                <input type="text" placeholder="Type your answer...">
                 <p id="right"></p>
+            </div>
+            <div id="answerBox" class="answer-box" style="display:none;">
+                <span>Answer: </span><span id="answerText"></span>
             </div>
         </section>
         <section class="ControlSection">
-            <button><img src="./icons/complete.png" alt="Evaluate Question"> <p>Evaluate Question</p></button>
-            <button><img src="./icons/random.png" alt="Random Question"> <p>Random Question</p></button>
-            <button><img src="./icons/next.png" alt="Next Question"> <p>Next Question</p></button>
+            <button>
+                <img src="./icons/complete.png" alt="Evaluate Question">
+                <span>Evaluate Question</span>
+            </button>
+            <button class="show-answer-btn">
+                <img src="./icons/eye.png" alt="Show Answer">
+                <span>Show Answer</span>
+            </button>
+            <button>
+                <img src="./icons/next.png" alt="Next Question">
+                <span>Next Question</span>
+            </button>
         </section>
         <section class="SearchBox">
             <h3>Search question by topic</h3>
         </section>
     </main>
+    <script src="./js/tasks.js"></script>
 </body>
-<script src="./js/tasks.js"></script>
 </html>

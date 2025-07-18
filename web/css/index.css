@@ -1,66 +1,258 @@
-main section {
-    margin: 1rem;
+/* Reset & base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
+    min-height: 100vh;
+    color: #22223b;
+}
+
+header {
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+    background: #3e5ca2;
+    color: white;
+    box-shadow: 0 4px 16px rgba(30, 45, 90, 0.07);
+}
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+}
+header h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 0.6rem;
+}
+
+main {
+    max-width: 600px;
+    margin: 2rem auto 0 auto;
+    padding: 1rem;
 }
 
 section.MainBox {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(60,80,130,0.09);
+    padding: 1.5rem 1rem;
+    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
-main section.MainBox .QuestionBox {
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 0.7rem;
+    gap: 0.4rem;
+}
+.tags h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+.tags p {
+    font-size: 0.95rem;
+    background: #e0e7ff;
+    color: #25316d;
+    font-weight: 500;
+    margin: 0 0.3rem 0 0;
+    padding: 0.2rem 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #b0b8e3;
+}
+
+#sentence, #keyword {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.QuestionBox {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.6rem;
     flex-wrap: wrap;
-
-    input {
-        margin: 0.2rem;
-        border-width: 0 0 2px 0;
-        outline: none;
-    }
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+.QuestionBox p {
+    font-size: 1.05rem;
+    min-width: 40px;
+    text-align: center;
+}
+.QuestionBox input[type="text"] {
+    min-width: 140px;
+    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.4rem;
+    border: 1.5px solid #cdd2f6;
+    transition: border-color 0.2s;
+    outline: none;
+    background: #f4f7fb;
+}
+.QuestionBox input[type="text"]:focus {
+    border-color: #3e5ca2;
+    background: #e0e7ff;
 }
 
-#keyword, #sentence {
-    font-weight: bold;
-}
-
-main section.MainBox .tags {
-    display: flex;
-    margin: 0.2rem;
-    align-items: center;
-
-    p {
-        font-size: small;
-        font-weight: 300;
-        margin: 0.8rem;
-        padding: 0.2rem 0.3rem;
-        border-radius: 0.3rem;
-        border: black 1px solid;
-    }
-}
-
-main section.ControlSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-
-    button {
-        margin: 1rem;
-        padding: 0.4rem;
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        p {
-            margin: 0 0 0 0.8rem !important;
-        }
-    }
-}
-
+/* Feedback */
 input.correct {
-    border: 2px solid green;
+    border: 2px solid #36b37e;
+    background: #eaffea;
+}
+input.incorrect {
+    border: 2px solid #e74c3c;
+    background: #fff0f0;
 }
 
-input.incorrect {
-    border: 2px solid red;
+/* Control buttons */
+.ControlSection {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    margin-bottom: 1.5rem;
 }
+.ControlSection button {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.6rem 1.2rem;
+    background: #3e5ca2;
+    color: white;
+    border: none;
+    border-radius: 0.6rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(60,80,130,0.07);
+    transition: background 0.15s, box-shadow 0.2s;
+}
+.ControlSection button:hover,
+.ControlSection button:focus {
+    background: #25316d;
+    box-shadow: 0 4px 16px rgba(60,80,130,0.13);
+}
+.ControlSection img {
+    width: 28px;
+    height: 28px;
+}
+.ControlSection span {
+    display: block;
+}
+
+/* Oculta el botón de Random Question */
+.ControlSection .hidden-random {
+    display: none !important;
+}
+
+/* SearchBox styles */
+.SearchBox {
+    margin-top: 0.8rem;
+    background: #eef2fb;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1rem;
+    box-shadow: 0 1px 4px rgba(60,80,130,0.06);
+}
+.SearchBox h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #25316d;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    main {
+        max-width: 96vw;
+        padding: 0.6rem;
+    }
+    section.MainBox {
+        padding: 1rem 0.4rem;
+    }
+    .QuestionBox input[type="text"] {
+        min-width: 90px;
+    }
+    .tags p {
+        font-size: 0.88rem;
+        padding: 0.17rem 0.5rem;
+    }
+    .ControlSection {
+        gap: 0.7rem;
+    }
+    .ControlSection button {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.98rem;
+    }
+    .ControlSection img {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 540px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+    header h2 {
+        font-size: 1rem;
+    }
+    main {
+        margin-top: 1rem;
+        padding: 0.2rem;
+    }
+    .ControlSection {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.4rem;
+    }
+    .ControlSection button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ...rest of your CSS above... */
+
+/* Center the ControlSection and space buttons evenly */
+.ControlSection {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Answer box styling */
+.answer-box {
+    margin: 1rem auto 0 auto;
+    padding: 0.6rem 1.2rem;
+    background: #fdf7c3;
+    color: #b68400;
+    border-radius: 0.5rem;
+    font-size: 1.08rem;
+    box-shadow: 0 1px 4px rgba(200,160,20,0.06);
+    text-align: center;
+    font-weight: 500;
+    max-width: 90%;
+    min-height: 2rem;
+}
+
+@media (max-width: 540px) {
+    .ControlSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    .ControlSection button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ...rest of your CSS below... */
