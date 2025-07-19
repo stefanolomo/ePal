@@ -95,6 +95,28 @@ section.MainBox {
     text-align: center;
 }
 
+h4 {
+    margin: 0.8rem;
+}
+
+#toggle-instruction {
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    font-size: 2px;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px black dashed;
+    margin-left: 0.5rem;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#toggle-instruction:hover {
+    background: #899FFF;
+    transform: scale(1.05);
+}
+
+
 .QuestionBox input[type="text"] {
     min-width: 140px;
     font-size: 1rem;
