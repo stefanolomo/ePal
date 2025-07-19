@@ -55,37 +55,7 @@
             Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a> - Made by 
             <a href="https://google.com" target="_blank" rel="noopener">@stefanolomo</a>
         </p>
-    </footer>
-    <script>
-        const darkToggle = document.getElementById("toggle-dark");
-    
-        // Set initial mode from localStorage
-        if (localStorage.getItem("dark-mode") === "true") {
-            document.body.classList.add("dark");
-            darkToggle.textContent = "☀️ Light Mode";
-        }
-    
-        darkToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark");
-            const isDark = document.body.classList.contains("dark");
-            localStorage.setItem("dark-mode", isDark);
-            darkToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
-        });
-    </script>
-    
-    <script>
-        const toggleBtn = document.getElementById("toggle-instruction");
-        const instruction = toggleBtn.closest("h4");
-    
-        toggleBtn.addEventListener("click", () => {
-            if (instruction.style.display === "none") {
-                instruction.style.display = "";
-                toggleBtn.textContent = "Shut up!";
-            } else {
-                instruction.style.display = "none";
-            }
-        });
-    </script>    
+    </footer>  
     <script src="./js/tasks.js"></script>
 </body>
 </html>

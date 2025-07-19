@@ -2,6 +2,7 @@
 
 let tasks = [];
 let currentIndex = 0;
+let answerTimeoutId = null;
 
 const leftElem = document.getElementById("left");
 const rightElem = document.getElementById("right");
@@ -12,6 +13,11 @@ const inputElem = document.querySelector("input");
 const buttons = document.querySelectorAll(".ControlSection button");
 const answerBox = document.getElementById("answerBox");
 const answerText = document.getElementById("answerText");
+
+// Extra elements for dark mode and instruction toggle
+const darkToggle = document.getElementById("toggle-dark");
+const toggleBtn = document.getElementById("toggle-instruction");
+const instruction = toggleBtn?.closest("h4");
 
 function resetFeedback() {
   inputElem.classList.remove("correct", "incorrect");
@@ -35,6 +41,12 @@ function renderTask(index) {
   inputElem.value = "";
   resetFeedback();
 
+  // Cancel any pending answer timeout
+  if (answerTimeoutId !== null) {
+    clearTimeout(answerTimeoutId);
+    answerTimeoutId = null;
+  }
+
   // Update tags
   const tagElements = Array.from(tagsContainer.querySelectorAll("p"));
   tagElements.forEach(p => {
@@ -47,10 +59,11 @@ function renderTask(index) {
     tagsContainer.appendChild(p);
   });
 
-  // Hide answer box on new question
+  // Hide answer box
   answerBox.style.display = "none";
   answerText.textContent = "";
 }
+
 
 function checkAnswer() {
   const task = tasks[currentIndex];
@@ -88,14 +101,56 @@ function randomTask() {
 
 function showAnswer() {
   const task = tasks[currentIndex];
-  // Show the first answer (or all answers joined by "; ")
-  answerText.textContent = Array.isArray(task.answers) ? task.answers.join(" ; ") : task.answers;
+  answerText.textContent = Array.isArray(task.answers)
+    ? task.answers.join(" ; ")
+    : task.answers;
   answerBox.style.display = "block";
+
+  // Cancel previous timeout if any
+  if (answerTimeoutId !== null) {
+    clearTimeout(answerTimeoutId);
+  }
+
+  // Hide after 5 seconds
+  answerTimeoutId = setTimeout(() => {
+    answerBox.style.display = "none";
+    answerText.textContent = "";
+    answerTimeoutId = null;
+  }, 5000);
 }
 
 // Attach listeners
 buttons[0].addEventListener("click", checkAnswer);      // Evaluate
 buttons[1].addEventListener("click", showAnswer);       // Show Answer
 buttons[2].addEventListener("click", nextTask);         // Next
+
+// Dark mode toggle
+if (darkToggle) {
+  if (localStorage.getItem("dark-mode") === "true") {
+    document.body.classList.add("dark");
+    darkToggle.textContent = "☀️ Light Mode";
+  }
+
+  darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    localStorage.setItem("dark-mode", isDark);
+    darkToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+  });
+}
+
+// Instruction toggle
+if (toggleBtn && instruction) {
+  toggleBtn.addEventListener("click", () => {
+    if (instruction.style.display === "none") {
+      instruction.style.display = "";
+      toggleBtn.textContent = "Shut up!";
+    } else {
+      instruction.style.display = "none";
+      toggleBtn.textContent = "speak";
+      toggleBtn.style.fontSize = "0.5rem";
+    }
+  });
+}
 
 window.addEventListener("DOMContentLoaded", loadTasks);
