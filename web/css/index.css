@@ -111,6 +111,25 @@ h4 {
     transition: background 0.2s, transform 0.2s;
 }
 
+#toggle-dark {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #222;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#toggle-dark:hover {
+    background: #444;
+}
+
+
 #toggle-instruction:hover {
     background: #899FFF;
     transform: scale(1.05);
@@ -326,4 +345,63 @@ footer a {
 
 footer a:hover {
     color: #36b37e;
+}
+
+body.dark {
+    background: #1e1e2f;
+    color: #f0f0f5;
+}
+
+body.dark header {
+    background: #2a2a3d;
+    color: #ffffff;
+}
+
+body.dark .MainBox {
+    background: #2b2b3e;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .tags p {
+    background: #3c3c5e;
+    color: #d0d0ff;
+    border-color: #5c5c8c;
+}
+
+body.dark .QuestionBox input[type="text"] {
+    background: #3c3c5e;
+    color: #f4f4ff;
+    border-color: #5c5c8c;
+}
+
+body.dark .QuestionBox input[type="text"]:focus {
+    background: #2f2f44;
+    border-color: #8888ff;
+}
+
+body.dark .ControlSection button {
+    background: #444466;
+    color: #f0f0ff;
+}
+
+body.dark .ControlSection button:hover {
+    background: #555577;
+}
+
+body.dark .answer-box {
+    background: #4b4b66;
+    color: #ffe680;
+}
+
+body.dark footer {
+    background: #2a2a3d;
+    color: #ccccff;
+}
+
+body.dark footer a {
+    color: #aad;
+}
+
+body.dark footer a:hover {
+    color: #8cf5d3;
 }

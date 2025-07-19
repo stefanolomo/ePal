@@ -12,7 +12,8 @@
     <header>
         <h1>EPal</h1>
         <h2>System to practice part 4 of the Cambridge CAE Exam.</h2>
-    </header>
+        <button id="toggle-dark" title="Toggle dark mode">🌙 Dark Mode</button>
+    </header>    
     <main>
         <section class="MainBox">
             <h4>Complete the second sentence so it has a similar meaning to the first one, using the word given. Don't change the word given. Use between 3 and 6 words including the word given <button id="toggle-instruction">Shut up!</button>
@@ -55,6 +56,23 @@
             <a href="https://google.com" target="_blank" rel="noopener">@stefanolomo</a>
         </p>
     </footer>
+    <script>
+        const darkToggle = document.getElementById("toggle-dark");
+    
+        // Set initial mode from localStorage
+        if (localStorage.getItem("dark-mode") === "true") {
+            document.body.classList.add("dark");
+            darkToggle.textContent = "☀️ Light Mode";
+        }
+    
+        darkToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            const isDark = document.body.classList.contains("dark");
+            localStorage.setItem("dark-mode", isDark);
+            darkToggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+    </script>
+    
     <script>
         const toggleBtn = document.getElementById("toggle-instruction");
         const instruction = toggleBtn.closest("h4");
