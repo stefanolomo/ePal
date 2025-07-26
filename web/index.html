@@ -46,16 +46,32 @@
                 <span>Next Question</span>
             </button>
         </section>
-        <section class="SearchBox">
-            <h3>Search question by topic</h3>
+        <section class="StatsBox">
+            <h3>Performance Summary</h3>
+            <p id="stats">Correct: 0 | Incorrect: 0 | Accuracy: 0%</p>
         </section>
-    </main>
+        
+        <section class="KeywordFilter">
+            <h3>Practice by keyword</h3>
+            <select id="keywordSelect">
+                <option value="all">All</option>
+            </select>
+            <button id="startKeywordPractice">Start Practice</button>
+        </section>
+        <section class="TagFilter">
+            <h3>Practice by tag</h3>
+            <select id="tagSelect">
+                <option value="all">All</option>
+            </select>
+            <button id="startTagPractice">Start Practice</button>
+        </section>          
+    </main> 
     <footer>
         <p>
             Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a> - Made by 
             <a href="https://google.com" target="_blank" rel="noopener">@stefanolomo</a>
         </p>
-    </footer>  
+    </footer>
     <script src="./js/tasks.js"></script>
 </body>
 </html>

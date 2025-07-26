@@ -1,19 +1,31 @@
+/* Reset y configuración básica */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(120deg, #e0e7ff 0%, #f8fafc 100%);
-    min-height: 100vh;
     color: #22223b;
+    display: flex;
+    flex-direction: column;
 }
 
+body.dark {
+    background: #1e1e2f;
+    color: #f0f0f5;
+}
+
+/* Cabecera */
 header {
     text-align: center;
-    padding: 2rem 1rem 1rem 1rem;
+    padding: 2rem 1rem 1rem;
     background: #3e5ca2;
     color: white;
     box-shadow: 0 4px 16px rgba(30, 45, 90, 0.07);
@@ -30,12 +42,98 @@ header h2 {
     margin-top: 0.6rem;
 }
 
+body.dark header {
+    background: #2a2a3d;
+    color: #f0f4ff;
+}
+
+/* Botones generales */
+button {
+    background: #3e5ca2;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 2px 6px rgba(60, 80, 130, 0.1);
+}
+
+button:hover,
+button:focus {
+    background: #25316d;
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(60, 80, 130, 0.15);
+}
+
+body.dark button {
+    background: #444466;
+    color: #f0f0ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark button:hover,
+body.dark button:focus {
+    background: #5b5b7d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+#toggle-dark {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.9rem;
+    border-radius: 1rem;
+    padding: 0.4rem 0.8rem;
+    background: #222;
+    color: #f4f4f4;
+}
+
+#toggle-dark:hover {
+    background: #444;
+}
+
+#toggle-instruction {
+    border: 1px black dashed;
+    border-radius: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    font-size: small;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#toggle-instruction:hover {
+    background: #899FFF;
+    transform: scale(1.05);
+}
+
+/* Contenido principal */
 main {
+    flex: 1;
     max-width: 600px;
-    margin: 2rem auto 0 auto;
+    margin: 2rem auto 0;
     padding: 1rem;
 }
 
+@media (max-width: 800px) {
+    main {
+        max-width: 96vw;
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 540px) {
+    main {
+        margin-top: 1rem;
+        padding: 0.2rem;
+    }
+}
+
+/* Caja principal */
 section.MainBox {
     background: white;
     border-radius: 1rem;
@@ -47,6 +145,37 @@ section.MainBox {
     align-items: stretch;
 }
 
+body.dark .MainBox {
+    background: #2b2b3e;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 800px) {
+    section.MainBox {
+        padding: 1rem 0.4rem;
+    }
+}
+
+/* Filtros y stats */
+.StatsBox,
+.KeywordFilter,
+.TagFilter {
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+}
+
+.StatsBox *,
+.KeywordFilter *,
+.TagFilter * {
+    padding: 0.2rem;
+}
+
+.KeywordFilter select,
+.TagFilter select {
+    margin-right: 1rem;
+}
+
+/* Tags */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -66,12 +195,25 @@ section.MainBox {
     background: #e0e7ff;
     color: #25316d;
     font-weight: 500;
-    margin: 0 0.3rem 0 0;
     padding: 0.2rem 0.8rem;
     border-radius: 0.5rem;
     border: 1px solid #b0b8e3;
 }
 
+body.dark .tags p {
+    background: #3c3c5e;
+    color: #d0d0ff;
+    border-color: #5c5c8c;
+}
+
+@media (max-width: 800px) {
+    .tags p {
+        font-size: 0.88rem;
+        padding: 0.17rem 0.5rem;
+    }
+}
+
+/* Preguntas */
 #sentence,
 #keyword {
     font-weight: bold;
@@ -85,8 +227,7 @@ section.MainBox {
     justify-content: center;
     gap: 0.6rem;
     flex-wrap: wrap;
-    margin-top: 1rem;
-    margin-bottom: 0.3rem;
+    margin: 1rem 0 0.3rem;
 }
 
 .QuestionBox p {
@@ -95,63 +236,21 @@ section.MainBox {
     text-align: center;
 }
 
-h4 {
-    margin: 0.8rem;
-}
-
-#toggle-instruction {
-    border: none;
-    border-radius: 0.4rem;
-    padding: 0.3rem 0.8rem;
-    font-size: small;
-    font-weight: bold;
-    cursor: pointer;
-    border: 1px black dashed;
-    margin-left: 0.5rem;
-    transition: background 0.2s, transform 0.2s;
-}
-
-#toggle-dark {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: #222;
-    color: #f4f4f4;
-    border: none;
-    border-radius: 1rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-#toggle-dark:hover {
-    background: #444;
-}
-
-
-#toggle-instruction:hover {
-    background: #899FFF;
-    transform: scale(1.05);
-}
-
-
 .QuestionBox input[type="text"] {
     min-width: 140px;
     font-size: 1rem;
     padding: 0.4rem 0.7rem;
     border-radius: 0.4rem;
     border: 1.5px solid #cdd2f6;
+    background: #f4f7fb;
     transition: border-color 0.2s;
     outline: none;
-    background: #f4f7fb;
 }
 
 .QuestionBox input[type="text"]:focus {
     border-color: #3e5ca2;
     background: #e0e7ff;
 }
-
 
 input.correct {
     border: 2px solid #36b37e;
@@ -163,12 +262,49 @@ input.incorrect {
     background: #fff0f0;
 }
 
+body.dark .QuestionBox input[type="text"] {
+    background: #3c3c5e;
+    color: #f4f4ff;
+    border-color: #5c5c8c;
+}
 
+body.dark .QuestionBox input[type="text"]:focus {
+    background: #2f2f44;
+    border-color: #8888ff;
+}
+
+@media (max-width: 800px) {
+    .QuestionBox input[type="text"] {
+        min-width: 90px;
+    }
+}
+
+/* Resultado de la respuesta */
+.answer-box {
+    margin: 1rem auto 0 auto;
+    padding: 0.6rem 1.2rem;
+    background: #fdf7c3;
+    color: #b68400;
+    border-radius: 0.5rem;
+    font-size: 1.08rem;
+    box-shadow: 0 1px 4px rgba(200, 160, 20, 0.06);
+    text-align: center;
+    font-weight: 500;
+    max-width: 90%;
+    min-height: 2rem;
+}
+
+body.dark .answer-box {
+    background: #2b2b3e;
+}
+
+/* Sección de control */
 .ControlSection {
     display: flex;
     gap: 1.5rem;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .ControlSection button {
@@ -176,21 +312,7 @@ input.incorrect {
     align-items: center;
     gap: 0.7rem;
     padding: 0.6rem 1.2rem;
-    background: #3e5ca2;
-    color: white;
-    border: none;
-    border-radius: 0.6rem;
     font-size: 1.05rem;
-    font-weight: 500;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(60, 80, 130, 0.07);
-    transition: background 0.10s, box-shadow 0.1s;
-}
-
-.ControlSection button:hover,
-.ControlSection button:focus {
-    background: #25316d;
-    box-shadow: 0 4px 16px rgba(60, 80, 130, 0.13);
 }
 
 .ControlSection img {
@@ -198,50 +320,11 @@ input.incorrect {
     height: 28px;
 }
 
-.ControlSection span {
-    display: block;
-}
-
-
 .ControlSection .hidden-random {
     display: none !important;
 }
 
-
-.SearchBox {
-    margin-top: 0.8rem;
-    background: #eef2fb;
-    border-radius: 0.7rem;
-    padding: 0.7rem 1rem;
-    box-shadow: 0 1px 4px rgba(60, 80, 130, 0.06);
-}
-
-.SearchBox h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #25316d;
-}
-
-
 @media (max-width: 800px) {
-    main {
-        max-width: 96vw;
-        padding: 0.6rem;
-    }
-
-    section.MainBox {
-        padding: 1rem 0.4rem;
-    }
-
-    .QuestionBox input[type="text"] {
-        min-width: 90px;
-    }
-
-    .tags p {
-        font-size: 0.88rem;
-        padding: 0.17rem 0.5rem;
-    }
-
     .ControlSection {
         gap: 0.7rem;
     }
@@ -258,57 +341,6 @@ input.incorrect {
 }
 
 @media (max-width: 540px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    header h2 {
-        font-size: 1rem;
-    }
-
-    main {
-        margin-top: 1rem;
-        padding: 0.2rem;
-    }
-
-    .ControlSection {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.4rem;
-    }
-
-    .ControlSection button {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-
-
-
-.ControlSection {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-}
-
-
-.answer-box {
-    margin: 1rem auto 0 auto;
-    padding: 0.6rem 1.2rem;
-    background: #fdf7c3;
-    color: #b68400;
-    border-radius: 0.5rem;
-    font-size: 1.08rem;
-    box-shadow: 0 1px 4px rgba(200, 160, 20, 0.06);
-    text-align: center;
-    font-weight: 500;
-    max-width: 90%;
-    min-height: 2rem;
-}
-
-@media (max-width: 540px) {
     .ControlSection {
         flex-direction: column;
         align-items: center;
@@ -321,15 +353,26 @@ input.incorrect {
     }
 }
 
+/* SearchBox */
+.SearchBox {
+    margin-top: 0.8rem;
+    background: #eef2fb;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1rem;
+    box-shadow: 0 1px 4px rgba(60, 80, 130, 0.06);
+}
 
+.SearchBox h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #25316d;
+}
 
-
-
-
+/* Footer */
 footer {
     width: 100%;
     text-align: center;
-    padding: 1.1rem 0 0.8rem 0;
+    padding: 1.1rem 0 0.8rem;
     background: #f4f7fb;
     color: #3e5ca2;
     font-size: 0.97rem;
@@ -347,61 +390,15 @@ footer a:hover {
     color: #36b37e;
 }
 
-body.dark {
-    background: #1e1e2f;
-    color: #f0f0f5;
-}
-
-body.dark header {
-    background: #2a2a3d;
-    color: #ffffff;
-}
-
-body.dark .MainBox {
-    background: #2b2b3e;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-}
-
-body.dark .tags p {
-    background: #3c3c5e;
-    color: #d0d0ff;
-    border-color: #5c5c8c;
-}
-
-body.dark .QuestionBox input[type="text"] {
-    background: #3c3c5e;
-    color: #f4f4ff;
-    border-color: #5c5c8c;
-}
-
-body.dark .QuestionBox input[type="text"]:focus {
-    background: #2f2f44;
-    border-color: #8888ff;
-}
-
-body.dark .ControlSection button {
-    background: #444466;
-    color: #f0f0ff;
-}
-
-body.dark .ControlSection button:hover {
-    background: #555577;
-}
-
-body.dark .answer-box {
-    background: #4b4b66;
-    color: #ffe680;
-}
-
 body.dark footer {
     background: #2a2a3d;
-    color: #ccccff;
+    color: #f0f4ff;
 }
 
 body.dark footer a {
-    color: #aad;
+    color: #ffffff;
 }
 
 body.dark footer a:hover {
-    color: #8cf5d3;
+    color: #36b37e;
 }
