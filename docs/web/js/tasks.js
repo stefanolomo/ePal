@@ -26,6 +26,7 @@ let correctCount = 0;
 let incorrectCount = 0;
 let filteredTasks = [];
 let isFiltering = false;
+let hasSeenAnswer = false;
 
 const statsElem = document.getElementById("stats");
 const keywordSelect = document.getElementById("keywordSelect");
@@ -132,11 +133,17 @@ function renderTask(index) {
     clearTimeout(answerTimeoutId);
     answerTimeoutId = null;
   }
+
+  hasSeenAnswer = false;
 }
 
 
 function checkAnswer() {
-  resetFeedback();
+  if (hasSeenAnswer) {
+    alert("You already saw the answer. Try the next task!");
+    return;
+  }
+
   const task = filteredTasks[currentIndex];
   const userAnswer = inputElem.value.trim().toLowerCase();
   const correct = task.answers.some(ans => userAnswer === ans.trim().toLowerCase());
@@ -202,12 +209,12 @@ function showAnswer() {
     : task.answers;
   answerBox.style.display = "block";
 
-  // Cancel previous timeout if any
+  hasSeenAnswer = true; // <-- IMPORTANTE
+
   if (answerTimeoutId !== null) {
     clearTimeout(answerTimeoutId);
   }
 
-  // Hide after 5 seconds
   answerTimeoutId = setTimeout(() => {
     answerBox.style.display = "none";
     answerText.textContent = "";
