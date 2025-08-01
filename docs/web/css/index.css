@@ -402,3 +402,7 @@ body.dark footer a {
 body.dark footer a:hover {
     color: #36b37e;
 }
+
+h4 {
+    margin-bottom: 0.7rem;
+}
