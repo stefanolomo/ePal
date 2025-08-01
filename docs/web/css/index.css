@@ -101,7 +101,7 @@ body.dark button:focus {
     padding: 0.3rem 0.8rem;
     font-size: small;
     font-weight: bold;
-    margin-left: 0.5rem;
+    margin: 0.5rem;
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
 }
@@ -167,7 +167,7 @@ body.dark .MainBox {
 .StatsBox *,
 .KeywordFilter *,
 .TagFilter * {
-    padding: 0.2rem;
+    padding: 0.4rem;
 }
 
 .KeywordFilter select,
