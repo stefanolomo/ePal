@@ -109,7 +109,7 @@ function renderTask(index) {
   sentenceElem.textContent = task.original;
   inputElem.value = "";
   resetFeedback();
-  
+
   // Clean tags
   const tagElements = Array.from(tagsContainer.querySelectorAll("p"));
   tagElements.forEach(p => {
@@ -118,12 +118,12 @@ function renderTask(index) {
   });
 
   if (Array.isArray(task.tags)) {
-  task.tags.forEach(tag => {
-    const p = document.createElement("p");
-    p.textContent = tag;
-    tagsContainer.appendChild(p);
-  });
-}
+    task.tags.forEach(tag => {
+      const p = document.createElement("p");
+      p.textContent = tag;
+      tagsContainer.appendChild(p);
+    });
+  }
 
   answerBox.style.display = "none";
   answerText.textContent = "";
@@ -136,6 +136,7 @@ function renderTask(index) {
 
 
 function checkAnswer() {
+  resetFeedback();
   const task = filteredTasks[currentIndex];
   const userAnswer = inputElem.value.trim().toLowerCase();
   const correct = task.answers.some(ans => userAnswer === ans.trim().toLowerCase());
@@ -164,9 +165,11 @@ function checkAnswer() {
 }
 
 function nextTask() {
+  resetFeedback();
   let nextIndex = (currentIndex + 1) % filteredTasks.length;
   renderTask(nextIndex);
 }
+
 
 startKeywordBtn.addEventListener("click", () => {
   const selected = keywordSelect.value;
@@ -252,10 +255,10 @@ startTagBtn.addEventListener("click", () => {
 
   filteredTasks = isFiltering
     ? tasks.filter(t =>
-        (!t.tags || t.tags.length === 0)
-          ? selectedTag === "no tag"
-          : t.tags.includes(selectedTag)
-      )
+      (!t.tags || t.tags.length === 0)
+        ? selectedTag === "no tag"
+        : t.tags.includes(selectedTag)
+    )
     : tasks;
 
   if (filteredTasks.length === 0) {
