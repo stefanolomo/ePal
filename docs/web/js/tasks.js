@@ -117,11 +117,13 @@ function renderTask(index) {
     p.remove();
   });
 
+  if (Array.isArray(task.tags)) {
   task.tags.forEach(tag => {
     const p = document.createElement("p");
     p.textContent = tag;
     tagsContainer.appendChild(p);
   });
+}
 
   answerBox.style.display = "none";
   answerText.textContent = "";
