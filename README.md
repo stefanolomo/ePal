@@ -6,5 +6,6 @@ EPal is a web app for practicing Part 4 of the Cambridge CAE (C1 Advanced) Engli
 - Instant feedback on your answer.
 - Browse questions by tag or at random.
 - All questions stored in a JSON file; scripts included for editing or tagging.
+- The questions should be accessed via the API provided
 
 **Try it here:** [EPal Web App](https://stefanolomo.github.io/EPal/web)
