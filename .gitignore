@@ -1,2 +1,23 @@
 *.json
 *.log
+# Entorno Virtual
+venv/
+.venv/
+env/
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Archivos de configuración del editor
+.vscode/  # A menos que quieras compartir settings.json
+.idea/
+
+# Archivos de instalación de Python
+*.egg-info/
+dist/
+build/
+
+# Bases de datos locales (si usas SQLite, por ejemplo)
+*.sqlite3
