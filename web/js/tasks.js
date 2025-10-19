@@ -16,7 +16,6 @@ const answerText = document.getElementById("answerText");
 const tagSelect = document.getElementById("tagSelect");
 const startTagBtn = document.getElementById("startTagPractice");
 
-
 // Extra elements for dark mode and instruction toggle
 const darkToggle = document.getElementById("toggle-dark");
 const toggleBtn = document.getElementById("toggle-instruction");
@@ -32,7 +31,6 @@ const statsElem = document.getElementById("stats");
 const keywordSelect = document.getElementById("keywordSelect");
 const startKeywordBtn = document.getElementById("startKeywordPractice");
 
-
 function resetFeedback() {
   inputElem.classList.remove("correct", "incorrect");
   inputElem.style.background = "";
@@ -44,11 +42,11 @@ function updateTagDropdown() {
 
   const tagCounts = {};
 
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     if (!Array.isArray(task.tags) || task.tags.length === 0) {
       tagCounts["no tag"] = (tagCounts["no tag"] || 0) + 1;
     } else {
-      task.tags.forEach(tag => {
+      task.tags.forEach((tag) => {
         tagCounts[tag] = (tagCounts[tag] || 0) + 1;
       });
     }
@@ -73,24 +71,25 @@ async function loadTasks() {
   renderTask(0);
 }
 
-
 function updateKeywordDropdown() {
   // Limpiar el dropdown excepto la opción "all"
   keywordSelect.innerHTML = '<option value="all">All</option>';
 
   // Contar cuántas tareas tiene cada keyword
   const keywordCounts = {};
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     keywordCounts[task.keyword] = (keywordCounts[task.keyword] || 0) + 1;
   });
 
   // Ordenar keywords y agregarlas al <select>
-  Object.entries(keywordCounts).sort().forEach(([kw, count]) => {
-    const option = document.createElement("option");
-    option.value = kw;
-    option.textContent = `${kw} (${count})`;
-    keywordSelect.appendChild(option);
-  });
+  Object.entries(keywordCounts)
+    .sort()
+    .forEach(([kw, count]) => {
+      const option = document.createElement("option");
+      option.value = kw;
+      option.textContent = `${kw} (${count})`;
+      keywordSelect.appendChild(option);
+    });
 }
 
 function updateStats() {
@@ -113,13 +112,13 @@ function renderTask(index) {
 
   // Clean tags
   const tagElements = Array.from(tagsContainer.querySelectorAll("p"));
-  tagElements.forEach(p => {
+  tagElements.forEach((p) => {
     if (p.querySelector("h3")) return;
     p.remove();
   });
 
   if (Array.isArray(task.tags)) {
-    task.tags.forEach(tag => {
+    task.tags.forEach((tag) => {
       const p = document.createElement("p");
       p.textContent = tag;
       tagsContainer.appendChild(p);
@@ -137,7 +136,6 @@ function renderTask(index) {
   hasSeenAnswer = false;
 }
 
-
 function checkAnswer() {
   if (hasSeenAnswer) {
     alert("You already saw the answer. Try the next task!");
@@ -146,7 +144,9 @@ function checkAnswer() {
 
   const task = filteredTasks[currentIndex];
   const userAnswer = inputElem.value.trim().toLowerCase();
-  const correct = task.answers.some(ans => userAnswer === ans.trim().toLowerCase());
+  const correct = task.answers.some(
+    (ans) => userAnswer === ans.trim().toLowerCase()
+  );
   inputElem.classList.remove("correct", "incorrect");
 
   if (correct) {
@@ -177,13 +177,12 @@ function nextTask() {
   renderTask(nextIndex);
 }
 
-
 startKeywordBtn.addEventListener("click", () => {
   const selected = keywordSelect.value;
   isFiltering = selected !== "all";
 
   filteredTasks = isFiltering
-    ? tasks.filter(t => t.keyword === selected)
+    ? tasks.filter((t) => t.keyword === selected)
     : tasks;
 
   if (filteredTasks.length === 0) {
@@ -223,9 +222,9 @@ function showAnswer() {
 }
 
 // Attach listeners
-buttons[0].addEventListener("click", checkAnswer);      // Evaluate
-buttons[1].addEventListener("click", showAnswer);       // Show Answer
-buttons[2].addEventListener("click", nextTask);         // Next
+buttons[0].addEventListener("click", checkAnswer); // Evaluate
+buttons[1].addEventListener("click", showAnswer); // Show Answer
+buttons[2].addEventListener("click", nextTask); // Next
 
 // Dark mode toggle
 if (darkToggle) {
@@ -261,11 +260,11 @@ startTagBtn.addEventListener("click", () => {
   isFiltering = selectedTag !== "all";
 
   filteredTasks = isFiltering
-    ? tasks.filter(t =>
-      (!t.tags || t.tags.length === 0)
-        ? selectedTag === "no tag"
-        : t.tags.includes(selectedTag)
-    )
+    ? tasks.filter((t) =>
+        !t.tags || t.tags.length === 0
+          ? selectedTag === "no tag"
+          : t.tags.includes(selectedTag)
+      )
     : tasks;
 
   if (filteredTasks.length === 0) {
