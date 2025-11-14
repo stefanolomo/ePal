@@ -202,7 +202,7 @@ function randomTask() {
 }
 
 function showAnswer() {
-    const task = tasks[currentIndex];
+    const task = filteredTasks[currentIndex];
     answerText.textContent = Array.isArray(task.answers)
         ? task.answers.join(" ; ")
         : task.answers;
