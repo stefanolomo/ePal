@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPal</title>
-    <script data-goatcounter="https://stefanolomo.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://stefanolomo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="icon" type="image/jpg" href="../favicon.ico"/>
+    <link rel="icon" type="image/jpg" href="../favicon.ico" />
 </head>
+
 <body>
     <header>
         <h1>EPal</h1>
         <h2>System to practice part 4 of the Cambridge CAE Exam.</h2>
-        <button id="toggle-dark" title="Toggle dark mode">🌙 Dark Mode</button>
-    </header>    
+
+        <div class="header-controls">
+            <label class="switch-container" title="Auto-advance after 3s">
+                <input type="checkbox" id="toggle-locked-in">
+                <span class="slider"></span>
+                <span class="label-text">Locked In Mode</span>
+            </label>
+            <button id="toggle-dark" title="Toggle dark mode">🌙 Dark Mode</button>
+        </div>
+    </header>
     <main>
         <section class="MainBox">
-            <h4>Complete the second sentence so it has a similar meaning to the first one, using the word given. Don't change the word given. Use between 3 and 6 words including the word given <button id="toggle-instruction">Shut up!</button>
-            </h4>
+            <h4>Complete the second sentence so it has a similar meaning to the first one, using the word given. Don't
+                change the word given. Use between 3 and 6 words including the word given <button
+                    id="toggle-instruction">Shut up!</button></h4>
             <div class="tags">
                 <h3>Tags:</h3>
             </div>
@@ -51,7 +61,7 @@
             <h3>Performance Summary</h3>
             <p id="stats">Correct: 0 | Incorrect: 0 | Accuracy: 0%</p>
         </section>
-        
+
         <section class="KeywordFilter">
             <h3>Practice by keyword</h3>
             <select id="keywordSelect">
@@ -65,14 +75,15 @@
                 <option value="all">All</option>
             </select>
             <button id="startTagPractice">Start Practice</button>
-        </section>          
-    </main> 
+        </section>
+    </main>
     <footer>
         <p>
-            Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a> - Made by 
+            Icons by <a href="https://www.flaticon.com/" target="_blank" rel="noopener">Flaticon</a> - Made by
             <a href="https://google.com" target="_blank" rel="noopener">@stefanolomo</a>
         </p>
     </footer>
     <script src="./js/tasks.js"></script>
 </body>
+
 </html>
