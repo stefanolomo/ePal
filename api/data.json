@@ -1,0 +1,115 @@
+[
+    {
+        "id": "fa4c0e00f810e4ac53cd956e3500de1aa7b10c695c6d0c1928393a4ca333a631",
+        "original": "Do you mind if John joins us for the meeting?",
+        "keyword": "TO",
+        "prompt": {
+            "left": "Do you have",
+            "right": "us for the meeting?"
+        },
+        "answers": [
+            "any objections to John's joining"
+        ],
+        "tags": [
+            "nominalization",
+            "collocations",
+            "formal"
+        ]
+    },
+    {
+        "id": "c16f2fd0da369a67bb59cf7cb92ce7e8cd8c43d7c655c37f251895f51f41cc34",
+        "original": "Dan abandoned his studies at university because he was ill",
+        "keyword": "RESULTED",
+        "prompt": {
+            "left": "Dan's",
+            "right": "his studies at university"
+        },
+        "answers": [
+            "illness resulted in him abandoning"
+        ],
+        "tags": [
+            "nominalization",
+            "phrasal-verbs",
+            "conjunctions-linkers"
+        ]
+    },
+    {
+        "id": "46145f44686093974ba1089ba59eab416b226be8c826af1ad7e71a84f1f680aa",
+        "original": "As soon as the tennis players went onto the court, it started raining",
+        "keyword": "HAD",
+        "prompt": {
+            "left": "No",
+            "right": "onto the court than it started raining"
+        },
+        "answers": [
+            "sooner had the tennis players gone"
+        ],
+        "tags": [
+            "inversion",
+            "conjunctions-linkers"
+        ]
+    },
+    {
+        "id": "a6b97144b1343c98e3e7ebe553e624aa6440652f7442d2dc7780ac7330303187",
+        "original": "We'll have to postpone the meeting until next week, as a lot of people are on leave, the manager said",
+        "keyword": "OFF",
+        "prompt": {
+            "left": "The manager said the meeting",
+            "right": "until the following week, as a lot of people were on leave"
+        },
+        "answers": [
+            "would have to be put off"
+        ],
+        "tags": [
+            "reported-speech",
+            "phrasal-verbs",
+            "passive-voice",
+            "modals"
+        ]
+    },
+    {
+        "id": "",
+        "original": "This is none of your business!",
+        "keyword": "DOESN'T",
+        "prompt": {
+            "left": "This",
+            "right": "I'm afraid."
+        },
+        "answers": [
+            "doesn't concern you"
+        ],
+        "tags": [
+            "idioms-fixed-expressions"
+        ]
+    },
+    {
+        "id": "",
+        "original": "I really should be going now",
+        "keyword": "TIME",
+        "prompt": {
+            "left": "It's high",
+            "right": "go now."
+        },
+        "answers": [
+            "time I was going"
+        ],
+        "tags": [
+            "idioms-fixed-expressions"
+        ]
+    },
+    {
+        "id": "",
+        "original": "Foolishly, I paid all the money before collecting the goods",
+        "keyword": "WHICH",
+        "prompt": {
+            "left": "I paid all the money before collecting the goods,",
+            "right": "to do."
+        },
+        "answers": [
+            "which was a stupid thing"
+        ],
+        "tags": [
+            "lexical-transformations"
+        ]
+    }
+]
